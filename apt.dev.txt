@@ -1,0 +1,9 @@
+# dev libs
+build-essential
+pkg-config
+libgtk-3-dev 
+libwebkit2gtk-4.0-dev
+
+# go build
+golang
+ca-certificates

@@ -1,0 +1,3 @@
+# vnc
+tigervnc-standalone-server
+tigervnc-tools
