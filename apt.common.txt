@@ -1,3 +1,5 @@
 # vnc
-tigervnc-standalone-server
-tigervnc-tools
+cage
+wayvnc
+sway
+iproute2
