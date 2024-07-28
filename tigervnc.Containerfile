@@ -1,6 +1,6 @@
 FROM debian:bookworm as common
 
-RUN apt-get update && apt-get install --no-install-recommends -y sway wayvnc
+RUN apt-get update && apt-get install --no-install-recommends -y i3 tigervnc-standalone-server tigervnc-tools
 
 
 FROM common as build
@@ -16,7 +16,6 @@ RUN GOOS=linux go build -o /usr/local/bin/tellerrand
 
 FROM build as dev
 
-RUN wayland.Containerfile
 
 #RUN useradd -m myuser && chown myuser /run/xdg
 #USER myuser
