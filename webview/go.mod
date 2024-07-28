@@ -1,4 +1,4 @@
-module tellerrand
+module tellerrand-webview
 
 go 1.19
 
