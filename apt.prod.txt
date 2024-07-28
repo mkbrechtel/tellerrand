@@ -1,3 +1,1 @@
 # libs
-libgtk-3-0
-libwebkit2gtk-4.0-37

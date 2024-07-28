@@ -1,5 +1,0 @@
-# vnc
-cage
-wayvnc
-sway
-iproute2
