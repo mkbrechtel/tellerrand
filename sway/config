@@ -1,0 +1,10 @@
+bar {
+  mode invisible
+}
+
+default_border none
+hide_edge_borders smart
+workspace_layout tabbed
+
+exec tellerrand
+exec wayvnc 0.0.0.0 5901
