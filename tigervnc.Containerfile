@@ -3,28 +3,29 @@ FROM debian:bookworm as common
 RUN apt-get update && apt-get install --no-install-recommends -y i3 tigervnc-standalone-server tigervnc-tools
 
 
-FROM common as build
+FROM common as build-webview
 
 RUN apt-get update && apt-get install -y build-essential pkg-config libgtk-3-dev libwebkit2gtk-4.0-dev golang ca-certificates
 
-
-WORKDIR /app
-COPY go.mod go.sum ./
+WORKDIR /app/webview
+COPY webview/go.mod webview/go.sum ./
 RUN go mod download
-COPY *.go ./
-RUN GOOS=linux go build -o /usr/local/bin/tellerrand
+COPY webview/*.go ./
+RUN GOOS=linux go build -o /usr/local/bin/tellerrand-webview
+WORKDIR /app
 
-FROM build as dev
 
+FROM build-webview as dev
 
+ENV PATH=/mnt/bin:$PATH
 #RUN useradd -m myuser && chown myuser /run/xdg
 #USER myuser
 #WORKDIR /home/myuser
 
-# FROM common as prod
 
-# COPY apt.prod.txt ./
-# RUN apt-get install --no-install-recommends -y libgtk-3-0 libwebkit2gtk-4.0-37
+FROM common as prod
 
-# COPY --from=dev /usr/local/bin/tellerrand /usr/local/bin/tellerrand
+RUN apt-get install --no-install-recommends -y libgtk-3-0 libwebkit2gtk-4.0-37
 
+COPY --chown=root:root ./i3/ /etc/i3/
+COPY --from=build-webview /usr/local/bin/tellerrand-webvie /usr/local/bin/tellerrand-webvie
